@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 const AuthProvider = ({ children }) => {
      const [user,setUser] = useState(null)
-
+     const [loading,setLoading] = useState(true)
 
     const provider = new GoogleAuthProvider();
     const handleGoogleLogin = () =>{
@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
           else{
             setUser(null)
           }
-    
+          setLoading(false)
           console.log("current user",currentUser)
           return ()=> unsubscribe()
         })
@@ -52,8 +52,8 @@ const AuthProvider = ({ children }) => {
         handleRegister,
         manageProfile,
         handleSignOut,
-        handleLogin
-        
+        handleLogin,
+        loading
     };
 
     return (
