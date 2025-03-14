@@ -8,14 +8,18 @@ const Login = () => {
 
  
 
-  const {handleGoogleLogin} = useContext(AuthContext)
+  const {handleGoogleLogin,handleLogin} = useContext(AuthContext)
   const navigate = useNavigate()
 
-  const handleLogin = (e) => {
+  const handleSignIn = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     console.log(email, password);
+    handleLogin(email,password)
+    .then(res => {
+        console.log("login successful",res)
+    })
 
 };
 
@@ -36,7 +40,7 @@ const Login = () => {
                     <div className="card bg-base-100 w-full max-w-sm p-8 shrink-0 shadow-2xl">
                         <form
                             className="card-body space-y-1"
-                            onSubmit={handleLogin}
+                            onSubmit={handleSignIn}
                         >
                             <h1 className="text-4xl font-bold">Login now!</h1>
                             <div className="form-control">
