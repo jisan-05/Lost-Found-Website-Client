@@ -1,12 +1,15 @@
-import React, { useContext } from 'react';
-import AuthContext from '../AuthContext/AuthContext';
+import { Outlet } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 const MainLayout = () => {
-  const {names} = useContext(AuthContext)
   return (
-    <div>
-      This is main layout 
-      <h1>{names}</h1>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <div className="flex-1 overflow-auto">
+        <Outlet />
+      </div>
+      <Footer />
     </div>
   );
 };
