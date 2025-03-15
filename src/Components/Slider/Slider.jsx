@@ -26,7 +26,7 @@ const Slider = () => {
                 <SwiperSlide>
                     <div className="relative">
                         <img
-                            className="w-full h-[500px] object-cover"
+                            className="w-full h-[300px] md:h-[500px] object-cover"
                             src={slide1}
                             alt="Report lost items"
                         />
@@ -45,7 +45,7 @@ const Slider = () => {
                 <SwiperSlide>
                     <div className="relative">
                         <img
-                            className="w-full h-[500px] object-cover"
+                            className="w-full h-[300px] md:h-[500px] object-cover"
                             src={slide2}
                             alt="Found a lost pet"
                         />
@@ -64,7 +64,7 @@ const Slider = () => {
                 <SwiperSlide>
                     <div className="relative">
                         <img
-                            className="w-full h-[500px] object-cover"
+                            className="w-full h-[300px] md:h-[500px] object-cover"
                             src={slide3}
                             alt="Happy reunion"
                         />
