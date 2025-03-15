@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import toast from "react-hot-toast";
+import AuthContext from "../AuthContext/AuthContext";
 
 const LostAndFound = () => {
+    const {user} = useContext(AuthContext)
     const [startDate, setStartDate] = useState(new Date());
+
+    
 
     const handleSubmit = e => {
       e.preventDefault()
@@ -16,8 +22,21 @@ const LostAndFound = () => {
       const Location = form.Location.value;
       const Date = startDate;
       const contactInfo = form.contactInfo.value;
-      console.log(postType,Thumbnail,Title,Description,Category,Location,Date,contactInfo)
+      const item = {
+        postType,Thumbnail,Title,Description,Category,Location,Date,contactInfo
+      }
+
+     axios.post(`${import.meta.env.VITE_API_URL}/items`,item)
+    .then(res =>{
+        if(res.data.acknowledged){
+            toast.success('Post Added Successful')
+        }
+    })
+      
+
+
     }
+
 
     return (
         <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl mx-auto my-5">
@@ -106,6 +125,8 @@ const LostAndFound = () => {
                         </label>
                         <input
                             type="text"
+                            value={user.email}
+                            readOnly
                             name="contactInfo"
                             className="input w-full"
                             placeholder="Email"

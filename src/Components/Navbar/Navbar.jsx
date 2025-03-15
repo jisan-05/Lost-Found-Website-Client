@@ -24,7 +24,22 @@ const Navbar = () => {
                         <NavLink to="/">Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/lostAndFound">Lost & Found Items</NavLink>
+                        <NavLink to="/AddLostAndFoundItems">
+                            Add Lost & Found Items
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/AllLostAndFoundItems">
+                            All Lost & Found Items
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/allRecoverItems">
+                            All Recovered Items
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/manageMyItem">Manage My Items</NavLink>
                     </li>
                 </ul>
             </div>
@@ -79,8 +94,13 @@ const Navbar = () => {
                             <NavLink to="/">Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/lostAndFound">
-                                Lost & Found Items
+                            <NavLink to="/AddLostAndFoundItems">
+                                Add Lost & Found Items
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/AllLostAndFoundItems">
+                                All Lost & Found Items
                             </NavLink>
                         </li>
                         <li>

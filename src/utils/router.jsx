@@ -7,6 +7,7 @@ import Register from "../Components/Register/Register";
 import PrivetRoute from "../Components/PrivetRoute/PrivetRoute";
 import AllRecoverItems from "../Components/AllRecoverItems/AllRecoverItems";
 import ManageMyItem from "../Components/ManageMyItem/ManageMyItem";
+import AllLostAndFoundItems from "../Components/AllLostAndFoundItems/AllLostAndFoundItems";
 
 const router = createBrowserRouter([
     {
@@ -18,12 +19,16 @@ const router = createBrowserRouter([
                 element: <Home></Home>,
             },
             {
-                path: "/lostAndFound",
+                path: "/AddLostAndFoundItems",
                 element: (
                     <PrivetRoute>
                         <LostAndFound></LostAndFound>
                     </PrivetRoute>
                 ),
+            },
+            {
+                path:"/AllLostAndFoundItems",
+                element:<AllLostAndFoundItems></AllLostAndFoundItems>
             },
             {
                 path: "/login",
