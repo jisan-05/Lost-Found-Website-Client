@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import AuthContext from "../AuthContext/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Register = () => {
     const { handleRegister, manageProfile, handleGoogleLogin,handleSignOut } =
@@ -18,6 +19,7 @@ const Register = () => {
         // console.log(name, email, image, password);
 
         handleRegister(email, password).then((res) => {
+            toast.success("New User Register successful")
             manageProfile(name, image)
             handleSignOut()
             console.log(res)
@@ -27,7 +29,11 @@ const Register = () => {
     const handleGoogle = () => {
         handleGoogleLogin()
             .then((result) => {
-                navigate("/");
+                if(!location.state){
+                    navigate('/')
+                }else{
+                    navigate(location.state.from);
+                }
                 console.log(result);
             })
             .catch((err) => console.log(err));

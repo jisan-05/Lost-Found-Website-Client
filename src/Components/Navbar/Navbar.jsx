@@ -20,7 +20,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <li>
+                    <li className="">
                         <NavLink to="/">Home</NavLink>
                     </li>
                     <li>
@@ -30,7 +30,11 @@ const Navbar = () => {
             </div>
             <div className="navbar-end gap-4">
                 <div className="dropdown dropdown-end z-50">
-                    <div tabIndex={1}>
+                    <div
+                        tabIndex={1}
+                        className="tooltip tooltip-bottom"
+                        data-tip={user?.displayName}
+                    >
                         {user?.photoURL ? (
                             <img
                                 src={user.photoURL}
@@ -40,10 +44,11 @@ const Navbar = () => {
                         ) : (
                             <></>
                         )}
+                        
                     </div>
                     <ul
                         tabIndex={1}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                        className="menu menu-md dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
                     >
                         <li>
                             <NavLink to="/">Home</NavLink>
@@ -51,6 +56,16 @@ const Navbar = () => {
                         <li>
                             <NavLink to="/lostAndFound">
                                 Lost & Found Items
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/allRecoverItems">
+                                All Recovered Items
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/manageMyItem">
+                                Manage My Items
                             </NavLink>
                         </li>
                         {user ? (

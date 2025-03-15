@@ -1,39 +1,44 @@
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../AuthContext/AuthContext";
-
-
+import toast from "react-hot-toast";
 
 const Login = () => {
+    const { handleGoogleLogin, handleLogin } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
 
- 
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log(email, password);
+        handleLogin(email, password).then((res) => {
+            toast.success("Login Successful");
+            if(!location.state){
+                navigate('/')
+            }else{
+                navigate(location.state.from);
+            }
+            console.log("login successful", res);
+        });
+    };
+    console.log(location)
+    const handleGoogle = () => {
+        handleGoogleLogin()
+            .then((result) => {
+                toast.success("login Successful");
 
-  const {handleGoogleLogin,handleLogin} = useContext(AuthContext)
-  const navigate = useNavigate()
-  const location = useLocation()
-
-  const handleSignIn = (e) => {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    console.log(email, password);
-    handleLogin(email,password)
-    .then(res => {
-        navigate(location.state.from)
-        console.log("login successful",res)
-    })
-
-};
-
-  const handleGoogle = () => {
-    handleGoogleLogin()
-    .then(result => {
-      navigate(location.state.from)
-      console.log(result)
-    })
-    .catch(err => console.log(err))
-  }
-  
+                    if(!location.state){
+                        navigate('/')
+                    }else{
+                        navigate(location.state.from);
+                    }
+                
+                console.log(result);
+            })
+            .catch((err) => console.log(err));
+    };
 
     return (
         <div>

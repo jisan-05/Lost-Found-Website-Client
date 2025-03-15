@@ -5,6 +5,8 @@ import LostAndFound from "../Components/LostAndFound/LostAndFound";
 import Login from "../Components/Login/Login";
 import Register from "../Components/Register/Register";
 import PrivetRoute from "../Components/PrivetRoute/PrivetRoute";
+import AllRecoverItems from "../Components/AllRecoverItems/AllRecoverItems";
+import ManageMyItem from "../Components/ManageMyItem/ManageMyItem";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
                 path: "/register",
                 element: <Register></Register>,
             },
+            {
+                path:'/allRecoverItems',
+                element:<AllRecoverItems></AllRecoverItems>
+            },
+            {
+                path:'/manageMyItem',
+                element:<ManageMyItem></ManageMyItem>
+            }
         ],
     },
 ]);
