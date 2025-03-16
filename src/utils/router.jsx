@@ -8,6 +8,7 @@ import PrivetRoute from "../Components/PrivetRoute/PrivetRoute";
 import AllRecoverItems from "../Components/AllRecoverItems/AllRecoverItems";
 import ManageMyItem from "../Components/ManageMyItem/ManageMyItem";
 import AllLostAndFoundItems from "../Components/AllLostAndFoundItems/AllLostAndFoundItems";
+import ItemsDetails from "../Components/ItemsDetails/ItemsDetails";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
             {
                 path:'/manageMyItem',
                 element:<ManageMyItem></ManageMyItem>
+            },
+            {
+                path:'/items/:id',
+                element:<ItemsDetails></ItemsDetails>    
             }
         ],
     },

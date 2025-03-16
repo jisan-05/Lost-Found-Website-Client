@@ -1,8 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ItemsCard = ({item}) => {
-    console.log(item)
+    // console.log(item)
     const {postType,Thumbnail,Title,Description,Category,Location,Date,contactInfo,_id} = item;
+
+    
+
     return (
         <div>
             <div className="card bg-base-100 w-96 shadow-sm">
@@ -19,7 +23,7 @@ const ItemsCard = ({item}) => {
                         {Description.slice(0,80)} .....
                     </p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">See Details</button>
+                        <Link to={`items/${_id}`}><button className="btn btn-primary">See Details</button></Link>
                     </div>
                 </div>
             </div>
