@@ -9,7 +9,7 @@ const ItemsCard = ({item}) => {
 
     return (
         <div>
-            <div className="card bg-base-100 w-96 shadow-sm">
+            <div className="card w-96 shadow-sm p-4 md:p-5 bg-blue-200">
                 <figure>
                     <img
                         className="h-44 w-full object-cover"
@@ -23,7 +23,7 @@ const ItemsCard = ({item}) => {
                         {Description.slice(0,80)} .....
                     </p>
                     <div className="card-actions justify-end">
-                        <Link to={`items/${_id}`}><button className="btn btn-primary">See Details</button></Link>
+                        <Link to={`/items/${_id}`}><button className="btn btn-primary">See Details</button></Link>
                     </div>
                 </div>
             </div>

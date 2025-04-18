@@ -22,8 +22,9 @@ const LostAndFound = () => {
       const Location = form.Location.value;
       const Date = startDate;
       const contactInfo = form.contactInfo.value;
+      const status = "";
       const item = {
-        postType,Thumbnail,Title,Description,Category,Location,Date,contactInfo
+        postType,Thumbnail,Title,Description,Category,Location,Date,contactInfo,status
       }
 
      axios.post(`${import.meta.env.VITE_API_URL}/items`,item)

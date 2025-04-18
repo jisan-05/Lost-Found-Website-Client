@@ -4,3 +4,4 @@
 @plugin "daisyui" {
   themes: all;
 }
+@custom-variant dark (&:where(.dark, .dark *));

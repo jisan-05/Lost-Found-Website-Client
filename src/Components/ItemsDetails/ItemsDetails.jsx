@@ -9,8 +9,10 @@ import AuthContext from "../AuthContext/AuthContext";
 import toast from "react-hot-toast";
 
 const ItemsDetails = () => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const [startDate, setStartDate] = useState(new Date());
-    const [location,setLocation] = useState("")
+    const [location, setLocation] = useState("");
     const { user } = useContext(AuthContext);
     const { id } = useParams();
     const [item, setItem] = useState([]);
@@ -20,7 +22,7 @@ const ItemsDetails = () => {
         fetchJobDetails();
     }, [id]);
 
-    // Recovered Info 
+    // Recovered Info
     const recoveryData = {
         location,
         recoveredDate: startDate,
@@ -30,23 +32,6 @@ const ItemsDetails = () => {
             photo: user?.photoURL,
         },
     };
-    
-    const handleSubmit =async () => {
-        const {data} =await axios.post(`${import.meta.env.VITE_API_URL}/recoveredItems`, recoveryData)
-        console.log(data)
-        if(data.acknowledged){
-            toast.success('Recovered Successful')
-        }
-    } 
-
-
-
-    const fetchJobDetails = async () => {
-        const { data } = await axios.get(
-            `${import.meta.env.VITE_API_URL}/items/${id}`
-        );
-        setItem(data);
-    };
 
     const {
         postType,
@@ -55,15 +40,34 @@ const ItemsDetails = () => {
         Description,
         Category,
         Location,
-        Date:itemDate,
+        Date: itemDate,
         contactInfo,
         _id,
+        status,
     } = item;
     // console.log(item);
+    // console.log(status)
+
+    const fetchJobDetails = async () => {
+
+       
+
+        const { data } = await axios.get(
+            `${import.meta.env.VITE_API_URL}/items/${id}`
+        );
+        setItem(data);
+    };
+
+    const handleSubmit = async () => {
+
+       
+    };
+
+ 
 
     return (
         <div className="flex justify-center items-center my-10 p-4 ">
-            <div className="card w-full md:w-3/4 lg:w-1/2 shadow-2xl rounded-xl overflow-hidden transform transition-all duration-300">
+            <div className="card w-full md:w-3/4 lg:w-1/2 shadow-xl rounded-xl overflow-hidden transform transition-all duration-300 ">
                 {/* Thumbnail Image */}
                 <figure className="relative h-64 overflow-hidden">
                     <img
@@ -152,7 +156,9 @@ const ItemsDetails = () => {
                                             type="text"
                                             name="location"
                                             value={location || ""}
-                                            onChange={(e)=> setLocation(e.target.value)}
+                                            onChange={(e) =>
+                                                setLocation(e.target.value)
+                                            }
                                             className="input input-bordered w-full"
                                             placeholder="Enter location"
                                         />
@@ -207,7 +213,11 @@ const ItemsDetails = () => {
                                         >
                                             Cancel
                                         </button>
-                                        <button className="btn btn-primary" onClick={handleSubmit}>
+                                        <button
+                                            className="btn btn-primary"
+                                            onClick={handleSubmit}
+                                            disabled={isSubmitting}
+                                        >
                                             Submit
                                         </button>
                                     </div>

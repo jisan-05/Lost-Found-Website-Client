@@ -6,9 +6,9 @@ import Login from "../Components/Login/Login";
 import Register from "../Components/Register/Register";
 import PrivetRoute from "../Components/PrivetRoute/PrivetRoute";
 import AllRecoverItems from "../Components/AllRecoverItems/AllRecoverItems";
-import ManageMyItem from "../Components/ManageMyItem/ManageMyItem";
 import AllLostAndFoundItems from "../Components/AllLostAndFoundItems/AllLostAndFoundItems";
 import ItemsDetails from "../Components/ItemsDetails/ItemsDetails";
+import ManageMyItem from "../Components/ManageMyItem/ManageMyItem";
 
 const router = createBrowserRouter([
     {
@@ -28,8 +28,8 @@ const router = createBrowserRouter([
                 ),
             },
             {
-                path:"/AllLostAndFoundItems",
-                element:<AllLostAndFoundItems></AllLostAndFoundItems>
+                path: "/AllLostAndFoundItems",
+                element: <AllLostAndFoundItems></AllLostAndFoundItems>,
             },
             {
                 path: "/login",
@@ -40,17 +40,17 @@ const router = createBrowserRouter([
                 element: <Register></Register>,
             },
             {
-                path:'/allRecoverItems',
-                element:<AllRecoverItems></AllRecoverItems>
+                path: "/allRecoverItems",
+                element: <AllRecoverItems></AllRecoverItems>,
             },
             {
-                path:'/manageMyItem',
-                element:<ManageMyItem></ManageMyItem>
+                path: "/myItems",
+                element:<ManageMyItem></ManageMyItem>,
             },
             {
-                path:'/items/:id',
-                element:<ItemsDetails></ItemsDetails>    
-            }
+                path: "/items/:id",
+                element:<PrivetRoute> <ItemsDetails></ItemsDetails></PrivetRoute>,
+            },
         ],
     },
 ]);

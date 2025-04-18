@@ -20,12 +20,14 @@ const AllLostAndFoundItems = () => {
         fetchItems();
     }, []);
     console.log(items);
-    
-    return <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-5">
-        {
-            items.map(item => <ItemsCard key={items._id} item={item}></ItemsCard>)
-        }
-    </div>;
+
+    return (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-5">
+            {items.map((item) => (
+                <ItemsCard key={items._id} item={item}></ItemsCard>
+            ))}
+        </div>
+    );
 };
 
 export default AllLostAndFoundItems;
