@@ -33,8 +33,6 @@ const LostAndFound = () => {
             toast.success('Post Added Successful')
         }
     })
-      
-
 
     }
 

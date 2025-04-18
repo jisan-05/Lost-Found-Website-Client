@@ -41,11 +41,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/allRecoverItems",
-                element: <AllRecoverItems></AllRecoverItems>,
+                element: <PrivetRoute><AllRecoverItems></AllRecoverItems></PrivetRoute>,
             },
             {
                 path: "/myItems",
-                element:<ManageMyItem></ManageMyItem>,
+                element:<PrivetRoute><ManageMyItem></ManageMyItem></PrivetRoute>,
             },
             {
                 path: "/items/:id",

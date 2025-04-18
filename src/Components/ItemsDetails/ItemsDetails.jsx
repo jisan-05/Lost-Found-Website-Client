@@ -49,9 +49,6 @@ const ItemsDetails = () => {
     // console.log(status)
 
     const fetchJobDetails = async () => {
-
-       
-
         const { data } = await axios.get(
             `${import.meta.env.VITE_API_URL}/items/${id}`
         );
@@ -59,11 +56,38 @@ const ItemsDetails = () => {
     };
 
     const handleSubmit = async () => {
+        if (status === "recovered") {
+            toast.error("Already Recovered");
+            return;
+        }
 
-       
+        if (status === "recovered") {
+            return toast.error("Already Recovered");
+        }
+
+        try {
+            const { data } = await axios.patch(
+                `${import.meta.env.VITE_API_URL}/items/${id}`,
+                { status: "recovered" }
+            );
+            if (data.modifiedCount > 0) {
+                toast.success("");
+            }
+        } catch {}
+
+        try {
+            const { data } = await axios.post(
+                `${import.meta.env.VITE_API_URL}/recoveredItems`,
+                recoveryData
+            );
+            if (data.acknowledged === true) {
+                toast.success("Recover data successfully added");
+                fetchJobDetails();
+            }
+        } catch {
+            console.log("post not work");
+        }
     };
-
- 
 
     return (
         <div className="flex justify-center items-center my-10 p-4 ">
@@ -216,9 +240,11 @@ const ItemsDetails = () => {
                                         <button
                                             className="btn btn-primary"
                                             onClick={handleSubmit}
-                                            disabled={isSubmitting}
+                                            disabled={status === "recovered" ? true : false}
                                         >
-                                            Submit
+                                            {
+                                                status === "recovered" ? "Already Recovered" : "Submit"
+                                            }
                                         </button>
                                     </div>
                                 </div>
