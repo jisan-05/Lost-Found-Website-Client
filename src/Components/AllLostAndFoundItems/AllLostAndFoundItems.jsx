@@ -23,8 +23,8 @@ const AllLostAndFoundItems = () => {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-5">
-            {items.map((item) => (
-                <ItemsCard key={items._id} item={item}></ItemsCard>
+            {items.map((item,idx) => (
+                <ItemsCard key={idx} item={item}></ItemsCard>
             ))}
         </div>
     );
