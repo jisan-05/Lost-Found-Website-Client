@@ -22,17 +22,6 @@ const ItemsDetails = () => {
         fetchJobDetails();
     }, [id]);
 
-    // Recovered Info
-    const recoveryData = {
-        location,
-        recoveredDate: startDate,
-        recoveredBy: {
-            name: user?.displayName,
-            email: user?.email,
-            photo: user?.photoURL,
-        },
-    };
-
     const {
         postType,
         Thumbnail,
@@ -45,6 +34,22 @@ const ItemsDetails = () => {
         _id,
         status,
     } = item;
+
+    // Recovered Info
+    const recoveryData = {
+
+        ItemCreator:contactInfo,
+        RecoveredItemId:_id,
+        location,
+        recoveredDate: startDate,
+        recoveredBy: {
+            name: user?.displayName,
+            email: user?.email,
+            photo: user?.photoURL,
+        },
+    };
+
+    
     // console.log(item);
     // console.log(status)
 
@@ -65,25 +70,34 @@ const ItemsDetails = () => {
             return toast.error("Already Recovered");
         }
 
-        try {
-            const { data } = await axios.patch(
-                `${import.meta.env.VITE_API_URL}/items/${id}`,
-                { status: "recovered" }
-            );
-            if (data.modifiedCount > 0) {
-                toast.success("");
+        try {   
+            if(contactInfo !== user.email){
+                const { data } = await axios.patch(
+                    `${import.meta.env.VITE_API_URL}/items/${id}`,
+                    { status: "recovered" }
+                );
+                if (data.modifiedCount > 0) {
+                    console.log("Recovered")
+                }
             }
+            
         } catch {}
 
         try {
-            const { data } = await axios.post(
-                `${import.meta.env.VITE_API_URL}/recoveredItems`,
-                recoveryData
-            );
-            if (data.acknowledged === true) {
-                toast.success("Recover data successfully added");
-                fetchJobDetails();
+            if(contactInfo === user.email){
+                toast.error("This item added you . you can not recovered This .")
+            }else{
+                const { data } = await axios.post(
+                    `${import.meta.env.VITE_API_URL}/recoveredItems`,
+                    recoveryData
+                );
+                if (data.acknowledged === true) {
+                    toast.success("Recover data successfully added");
+                    fetchJobDetails();
+                }
             }
+           
+            
         } catch {
             console.log("post not work");
         }

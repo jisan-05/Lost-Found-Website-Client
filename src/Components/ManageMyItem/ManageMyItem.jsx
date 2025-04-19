@@ -96,7 +96,8 @@ const ManageMyItem = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        <div>{item.status}</div>
+
+                                        <p className={item.status === "pending" ?  "text-orange-600" : "text-green-600"}>{item.status}</p>
                                     </td>
                                     <td>
                                         {new Date(item.Date).toLocaleString(

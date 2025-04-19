@@ -22,7 +22,7 @@ const LostAndFound = () => {
       const Location = form.Location.value;
       const Date = startDate;
       const contactInfo = form.contactInfo.value;
-      const status = "";
+      const status = "pending";
       const item = {
         postType,Thumbnail,Title,Description,Category,Location,Date,contactInfo,status
       }
