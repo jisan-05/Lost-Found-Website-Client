@@ -4,6 +4,7 @@ import axios from "axios";
 import { MdDeleteOutline } from "react-icons/md";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ManageMyItem = () => {
     const { user } = useContext(AuthContext);
@@ -42,11 +43,10 @@ const ManageMyItem = () => {
                     title: "Deleted!",
                     text: "Your file has been deleted.",
                     icon: "success",
-                  });
-                  fetchItems();
+                });
+                fetchItems();
             }
         });
-
     };
 
     console.log(items);
@@ -96,8 +96,15 @@ const ManageMyItem = () => {
                                         </div>
                                     </td>
                                     <td>
-
-                                        <p className={item.status === "pending" ?  "text-orange-600" : "text-green-600"}>{item.status}</p>
+                                        <p
+                                            className={
+                                                item.status === "pending"
+                                                    ? "text-orange-600"
+                                                    : "text-green-600"
+                                            }
+                                        >
+                                            {item.status}
+                                        </p>
                                     </td>
                                     <td>
                                         {new Date(item.Date).toLocaleString(
@@ -113,9 +120,11 @@ const ManageMyItem = () => {
                                         )}
                                     </td>
                                     <th className="flex gap-2">
-                                        <button className="btn bg-blue-500 text-white">
-                                            Edit
-                                        </button>
+                                        <Link to={`/update/${item._id}`}>
+                                            <button className="btn bg-blue-500 text-white">
+                                                Edit
+                                            </button>
+                                        </Link>
                                         <button
                                             onClick={() =>
                                                 handleDelete(item._id)
