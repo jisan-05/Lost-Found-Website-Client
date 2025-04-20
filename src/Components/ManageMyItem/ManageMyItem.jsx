@@ -13,7 +13,7 @@ const ManageMyItem = () => {
     const fetchItems = async () => {
         try {
             const { data } = await axios.get(
-                `${import.meta.env.VITE_API_URL}/items/user/${user.email}`
+                `${import.meta.env.VITE_API_URL}/items/user/${user.email}`,{withCredentials:true}
             );
             setItems(data);
         } catch (err) {
