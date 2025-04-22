@@ -5,6 +5,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const ManageMyItem = () => {
     const { user } = useContext(AuthContext);
@@ -13,7 +14,8 @@ const ManageMyItem = () => {
     const fetchItems = async () => {
         try {
             const { data } = await axios.get(
-                `${import.meta.env.VITE_API_URL}/items/user/${user.email}`,{withCredentials:true}
+                `${import.meta.env.VITE_API_URL}/items/user/${user.email}`,
+                { withCredentials: true }
             );
             setItems(data);
         } catch (err) {
@@ -52,6 +54,9 @@ const ManageMyItem = () => {
     console.log(items);
     return (
         <div>
+            <Helmet>
+                <title>Lost & Found | My Items</title>
+            </Helmet>
             <h3 className="text-3xl">Manage my items:</h3>
             <div>
                 <div className="overflow-x-auto">

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Slider from "../Slider/Slider";
 import axios from "axios";
 import ItemsCard from "../ItemsCard/ItemsCard";
+import { Helmet } from "react-helmet-async";
+
+
 
 const Home = () => {
     const [items, setItems] = useState([]);
@@ -25,6 +28,9 @@ const Home = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Lost & Found | Home</title>
+            </Helmet>
             <Slider></Slider>
 
             <h3 className="text-center text-4xl mt-14 mb-8 font-semibold">Lost & Found Items</h3>

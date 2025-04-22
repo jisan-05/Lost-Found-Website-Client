@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
 import AuthContext from "../AuthContext/AuthContext";
+import { Helmet } from "react-helmet-async";
 
 const LostAndFound = () => {
     const {user} = useContext(AuthContext)
@@ -39,6 +40,9 @@ const LostAndFound = () => {
 
     return (
         <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl mx-auto my-5">
+             <Helmet>
+                            <title>Lost & Found | Add</title>
+                        </Helmet>
             <div className="card-body">
                 <h4 className="mx-auto text-2xl font-semibold">
                     Add Lost & Found Item

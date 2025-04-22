@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../AuthContext/AuthContext";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const AllRecoverItems = () => {
     const { user } = useContext(AuthContext);
@@ -20,6 +21,9 @@ const AllRecoverItems = () => {
 
     return (
         <div>
+             <Helmet>
+                            <title>Lost & Found | Recover</title>
+                        </Helmet>
             All recover items:
             <div>
                 <div className="overflow-x-auto">

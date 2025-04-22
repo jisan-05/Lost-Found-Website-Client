@@ -1,10 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 import AuthContext from "../AuthContext/AuthContext";
 
+
+
 const Navbar = () => {
     const { user, handleSignOut } = useContext(AuthContext);
+    // const [profile,setProfile] = useState('')
+    // useEffect(()=>{
+    //     setProfile(user?.photoURL)
+    // },[])
 
     const signOut = () => {
         handleSignOut();
@@ -13,6 +19,7 @@ const Navbar = () => {
 
     return (
         <div className="navbar bg-base-100 shadow-sm">
+        
             <div className="navbar-start">
                 <Link to="/" className="btn btn-ghost text-xl">
                     Lost and Found
@@ -78,7 +85,7 @@ const Navbar = () => {
                     >
                         {user?.photoURL ? (
                             <img
-                                src={user.photoURL}
+                                src={user?.photoURL}
                                 className="w-12 h-12 rounded-full"
                                 alt="User"
                             />

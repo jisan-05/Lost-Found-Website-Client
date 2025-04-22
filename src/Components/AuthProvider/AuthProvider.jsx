@@ -43,12 +43,13 @@ const AuthProvider = ({ children }) => {
             })
             .then(res =>{
               console.log("data is",res.data)
+              setLoading(false)
             })
           }
           else{
-            setUser(null)
+            // setUser(null)
+            setLoading(false)
           }
-          setLoading(false)
           console.log("current user",currentUser)
         })
         return ()=> unsubscribe()
