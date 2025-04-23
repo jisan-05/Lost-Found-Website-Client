@@ -2,14 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../AuthContext/AuthContext";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AllRecoverItems = () => {
     const { user } = useContext(AuthContext);
     const [recoverItems, setRecoverItems] = useState([]);
     const [recoveredBy, setRecoveredBy] = useState([])
+    const axiosSecure = useAxiosSecure()
 
     const fetchItems = async () => {
-        const { data } = await axios.get(
+        const { data } = await axiosSecure.get(
             `${import.meta.env.VITE_API_URL}/allRecovered/${user.email}`
         );
         setRecoverItems(data);

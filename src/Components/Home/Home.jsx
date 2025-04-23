@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Slider from "../Slider/Slider";
 import axios from "axios";
 import ItemsCard from "../ItemsCard/ItemsCard";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import AuthContext from "../AuthContext/AuthContext";
 
 
 
 const Home = () => {
     const [items, setItems] = useState([]);
+    // const axiosSecure = useAxiosSecure()
+    // const {user} =useContext(AuthContext)
 
     useEffect(() => {
         const fetchItems = async () => {

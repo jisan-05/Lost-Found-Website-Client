@@ -13,7 +13,7 @@ const Login = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log(email, password);
-        handleLogin(email, password).then((res) => {
+    handleLogin(email, password).then((res) => {
             toast.success("Login Successful");
             if(!location.state){
                 navigate('/')

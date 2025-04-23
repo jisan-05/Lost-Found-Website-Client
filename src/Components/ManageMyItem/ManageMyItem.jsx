@@ -6,16 +6,17 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const ManageMyItem = () => {
     const { user } = useContext(AuthContext);
     const [items, setItems] = useState([]);
+    const axiosSecure = useAxiosSecure()
 
     const fetchItems = async () => {
         try {
-            const { data } = await axios.get(
-                `${import.meta.env.VITE_API_URL}/items/user/${user.email}`,
-                { withCredentials: true }
+            const { data } = await axiosSecure.get(
+                `/items/user/${user.email}`
             );
             setItems(data);
         } catch (err) {
@@ -38,8 +39,8 @@ const ManageMyItem = () => {
             confirmButtonText: "Yes, delete it!",
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const { data } = await axios.delete(
-                    `${import.meta.env.VITE_API_URL}/items/${id}`
+                const { data } = await axiosSecure.delete(
+                    `${import.meta.env.VITE_API_URL}/items/${id}?email=${user.email}`
                 );
                 Swal.fire({
                     title: "Deleted!",

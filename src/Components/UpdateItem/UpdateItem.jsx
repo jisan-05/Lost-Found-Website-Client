@@ -4,6 +4,7 @@ import AuthContext from "../AuthContext/AuthContext";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const UpdateItem = () => {
     const { id } = useParams();
@@ -11,6 +12,7 @@ const UpdateItem = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [item, setItem] = useState([]);
     const navigate = useNavigate()
+    const axiosSecure = useAxiosSecure()
 
     const [postType, setPostType] = useState("");
     const [category, setCategory] = useState("");
@@ -56,8 +58,8 @@ const UpdateItem = () => {
             status,
         };
 
-        axios
-            .patch(`${import.meta.env.VITE_API_URL}/update/${id}`, UpdateItem)
+        axiosSecure
+            .patch(`${import.meta.env.VITE_API_URL}/update/${id}?email=${user.email}`, UpdateItem)
             .then((res) => {
                 if (res.data.matchedCount > 0) {
                     toast.success("Update Successful");

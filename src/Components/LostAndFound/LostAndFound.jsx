@@ -5,10 +5,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
 import AuthContext from "../AuthContext/AuthContext";
 import { Helmet } from "react-helmet-async";
+import { useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const LostAndFound = () => {
     const {user} = useContext(AuthContext)
     const [startDate, setStartDate] = useState(new Date());
+    const navigate = useNavigate()
+    const axiosSecure = useAxiosSecure()
 
     
 
@@ -28,10 +32,11 @@ const LostAndFound = () => {
         postType,Thumbnail,Title,Description,Category,Location,Date,contactInfo,status
       }
 
-     axios.post(`${import.meta.env.VITE_API_URL}/items`,item)
+     axiosSecure.post(`${import.meta.env.VITE_API_URL}/items?email=${user.email}`,item)
     .then(res =>{
         if(res.data.acknowledged){
             toast.success('Post Added Successful')
+            navigate('/myItems')
         }
     })
 

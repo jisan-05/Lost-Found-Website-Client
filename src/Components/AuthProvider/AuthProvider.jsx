@@ -47,7 +47,11 @@ const AuthProvider = ({ children }) => {
             })
           }
           else{
-            // setUser(null)
+            axios.post('http://localhost:5000/logout',{},{withCredentials:true})
+            .then(res =>{
+              console.log("Logout", res.data)
+            })
+            setUser(null)
             setLoading(false)
           }
           console.log("current user",currentUser)
