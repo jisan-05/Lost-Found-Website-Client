@@ -9,7 +9,7 @@ const ItemsCard = ({item}) => {
 
     return (
         <div>
-            <div className="card w-96 shadow-sm p-4 md:p-5 bg-blue-200">
+            <div className="card w-[80%] shadow-sm p-4 md:p-5 bg-base-300 mx-auto">
                 <figure>
                     <img
                         className="h-44 w-full object-cover"

@@ -28,8 +28,8 @@ const AllRecoverItems = () => {
                         </Helmet>
             All recover items:
             <div>
-                <div className="overflow-x-auto">
-                    <table className="table">
+                <div className="overflow-x-auto ">
+                    <table className="table ">
                         {/* head */}
                         <thead>
                             <tr>

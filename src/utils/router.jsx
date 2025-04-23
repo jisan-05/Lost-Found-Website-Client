@@ -10,11 +10,13 @@ import AllLostAndFoundItems from "../Components/AllLostAndFoundItems/AllLostAndF
 import ItemsDetails from "../Components/ItemsDetails/ItemsDetails";
 import ManageMyItem from "../Components/ManageMyItem/ManageMyItem";
 import UpdateItem from "../Components/UpdateItem/UpdateItem";
+import ErrorPage from "../Components/ErrorPage.jsx/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+        errorElement:<ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
@@ -30,7 +32,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/AllLostAndFoundItems",
-                element: <AllLostAndFoundItems></AllLostAndFoundItems>,
+                element: <PrivetRoute><AllLostAndFoundItems></AllLostAndFoundItems></PrivetRoute>,
             },
             {
                 path: "/login",

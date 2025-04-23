@@ -70,7 +70,7 @@ const ManageMyItem = () => {
                                 </th>
                                 <th>Title</th>
                                 <th>Status</th>
-                                <th>Date</th>
+                                <th className="">Date</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -112,7 +112,7 @@ const ManageMyItem = () => {
                                             {item.status}
                                         </p>
                                     </td>
-                                    <td>
+                                    <td className="">
                                         {new Date(item.Date).toLocaleString(
                                             "en-GB",
                                             {
@@ -125,9 +125,9 @@ const ManageMyItem = () => {
                                             }
                                         )}
                                     </td>
-                                    <th className="flex gap-2">
+                                    <th className="flex flex-col md:flex-row gap-2">
                                         <Link to={`/update/${item._id}`}>
-                                            <button className="btn bg-blue-500 text-white">
+                                            <button className="btn bg-blue-500 w-26 text-white">
                                                 Edit
                                             </button>
                                         </Link>
@@ -135,7 +135,7 @@ const ManageMyItem = () => {
                                             onClick={() =>
                                                 handleDelete(item._id)
                                             }
-                                            className="btn bg-orange-600 text-white "
+                                            className="btn bg-orange-600 w-26 text-white "
                                         >
                                             Delete{" "}
                                             <MdDeleteOutline className="text-2xl" />
