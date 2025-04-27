@@ -1,3 +1,10 @@
 .pagination{
-  
+  text-align: center;
+  margin-bottom: 10px;
+}
+.pagination > button {
+  margin: 3px;
+}
+.pagination .selected {
+  background-color: rgb(71, 194, 243);
 }

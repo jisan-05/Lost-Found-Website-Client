@@ -5,18 +5,33 @@ import ItemsCard from "../ItemsCard/ItemsCard";
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import AuthContext from "../AuthContext/AuthContext";
+import { useLoaderData } from "react-router-dom";
+import "./Home.css";
 
 const Home = () => {
     const [items, setItems] = useState([]);
     // const axiosSecure = useAxiosSecure()
     // const {user} =useContext(AuthContext)
     const [loading, setLoading] = useState(true);
+    const [itemPerPage, setItemPerPage] = useState(10);
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const { count } = useLoaderData();
+
+    const numberOfPages = Math.ceil(count / itemPerPage);
+
+    const pages = [];
+    for (let i = 0; i < numberOfPages; i++) {
+        pages.push(i);
+    }
 
     useEffect(() => {
         const fetchItems = async () => {
             try {
                 const { data } = await axios.get(
-                    `${import.meta.env.VITE_API_URL}/items`
+                    `${
+                        import.meta.env.VITE_API_URL
+                    }/items?page=${currentPage}&size=${itemPerPage}`
                 );
                 setItems(data);
                 setLoading(false);
@@ -26,9 +41,24 @@ const Home = () => {
         };
 
         fetchItems();
-    }, []);
+    }, [currentPage, itemPerPage]);
 
     // console.log(items);
+    const handlePerPage = (e) => {
+        const val = parseInt(e.target.value);
+        setItemPerPage(val);
+        setCurrentPage(0);
+    };
+    const handlePrevPage = () =>{
+        if(currentPage > 0){
+            setCurrentPage(currentPage - 1)
+        }
+    }
+    const handleNextPage = () =>{
+        if(currentPage < pages.length - 1){
+            setCurrentPage(currentPage + 1)
+        }
+    }
 
     return (
         <div>
@@ -52,6 +82,32 @@ const Home = () => {
                     ))}
                 </div>
             )}
+            {/* for pagination  */}
+            <div className="pagination">
+                <button className="btn" onClick={handlePrevPage}>Prev</button>
+                {pages.map((page) => (
+                    <button
+                        className={`btn ${currentPage === page && "selected"}`}
+                        key={page}
+                        onClick={() => setCurrentPage(page)}
+                    >
+                        {page}
+                    </button>
+                ))}
+                <button className="btn" onClick={handleNextPage}>Next</button>
+                <select
+                    value={itemPerPage}
+                    name=""
+                    id=""
+                    onChange={handlePerPage}
+                    className="btn"
+                >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+            </div>
         </div>
     );
 };

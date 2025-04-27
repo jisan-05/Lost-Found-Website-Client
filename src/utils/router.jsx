@@ -21,6 +21,8 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
+                loader: () => fetch(`http://localhost:5000/itemsCount`)
+
             },
             {
                 path: "/AddLostAndFoundItems",
@@ -37,10 +39,7 @@ const router = createBrowserRouter([
                         <AllLostAndFoundItems></AllLostAndFoundItems>
                     </PrivetRoute>
                 ),
-                loader: () =>
-                    fetch(
-                        `https://lost-found-website-server.vercel.app/itemsCount`
-                    ),
+                loader: () => fetch(`http://localhost:5000/itemsCount`),
             },
             {
                 path: "/login",
