@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
-        errorElement:<ErrorPage></ErrorPage>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
@@ -32,7 +32,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "/AllLostAndFoundItems",
-                element: <PrivetRoute><AllLostAndFoundItems></AllLostAndFoundItems></PrivetRoute>,
+                element: (
+                    <PrivetRoute>
+                        <AllLostAndFoundItems></AllLostAndFoundItems>
+                    </PrivetRoute>
+                ),
+                loader: () =>
+                    fetch(
+                        `https://lost-found-website-server.vercel.app/itemsCount`
+                    ),
             },
             {
                 path: "/login",
@@ -44,20 +52,33 @@ const router = createBrowserRouter([
             },
             {
                 path: "/allRecoverItems",
-                element: <PrivetRoute><AllRecoverItems></AllRecoverItems></PrivetRoute>,
+                element: (
+                    <PrivetRoute>
+                        <AllRecoverItems></AllRecoverItems>
+                    </PrivetRoute>
+                ),
             },
             {
                 path: "/myItems",
-                element:<PrivetRoute><ManageMyItem></ManageMyItem></PrivetRoute>,
+                element: (
+                    <PrivetRoute>
+                        <ManageMyItem></ManageMyItem>
+                    </PrivetRoute>
+                ),
             },
             {
                 path: "/items/:id",
-                element:<PrivetRoute> <ItemsDetails></ItemsDetails></PrivetRoute>,
+                element: (
+                    <PrivetRoute>
+                        {" "}
+                        <ItemsDetails></ItemsDetails>
+                    </PrivetRoute>
+                ),
             },
             {
-                path:"/update/:id",
-                element:<UpdateItem></UpdateItem>
-            }
+                path: "/update/:id",
+                element: <UpdateItem></UpdateItem>,
+            },
         ],
     },
 ]);

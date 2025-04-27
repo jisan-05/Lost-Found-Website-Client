@@ -4,11 +4,28 @@ import ItemsCard from "../ItemsCard/ItemsCard";
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import AuthContext from "../AuthContext/AuthContext";
+import { useLoaderData } from "react-router-dom";
+import './AllLostAndFountItems.css'
 
 const AllLostAndFoundItems = () => {
     const [items, setItems] = useState([]);
     const [filter,setFilter] = useState('')
     const [search,setSearch] = useState('')
+    const {count} = useLoaderData()
+    console.log(count)
+    const itemsPerPage = 10;
+    const numberOfPages = Math.ceil(count /  itemsPerPage)
+
+    const pages = []
+    for(let i = 0; i < numberOfPages ; i++){
+        pages.push(i)
+    }
+    console.log(pages)
+
+    /**
+     * DONE 1 : get the total number of products
+     * TODO 2 : number of items per page Dynamic
+     */
     
 
     useEffect(() => {
@@ -77,6 +94,11 @@ const AllLostAndFoundItems = () => {
                 {items.map((item, idx) => (
                     <ItemsCard key={idx} item={item}></ItemsCard>
                 ))}
+            </div>
+            <div className="pagination">
+                {
+                    pages.map(page => <button key={page} className="btn">{page}</button>)
+                }
             </div>
         </div>
     );
